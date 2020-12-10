@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "2888912f-a1b0-4eef-a2e1-0f3f637aa67a",
+		"name": "TFS_20_Company_admin_able_to_assign_task_to_the_app_users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Company_admin_login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d310bbb5-e8e1-4c22-9814-93eb7e43f840",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"var jsonData= JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"auth_token\", jsonData.auth_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"tonmoyny@yahoo.com\",\r\n    \"password\": \"ctg@1234567\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "167.99.73.130:30287/api/v1/field-force/auth/dashboard-user-login",
+					"host": [
+						"167",
+						"99",
+						"73",
+						"130"
+					],
+					"port": "30287",
+					"path": [
+						"api",
+						"v1",
+						"field-force",
+						"auth",
+						"dashboard-user-login"
+					]
+				},
+				"description": "Objective: Company admin login in admin panel\r\n\r\nSE: Shiblu Ahmad\r\nPO: Pranto Majumder\r\nQA: Sujoy Barua\r\nReviewd By: Duha Chowdhury\r\n\r\nTest data :\r\n{\r\n    \"email\": \"tonmoyny@yahoo.com\",\r\n    \"password\": \"ctgc@1234\"\r\n\r\n}\r\n\r\nExpected result : \r\n{\r\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDYyNzI5MzIsImlhdCI6MTYwNjI2OTMzMiwic3ViIjo3ODYsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJTdWpveSBCYXJ1YSIsImVtYWlsIjoidG9ubW95bnlAeWFob28uY29tIiwibWVtYmVyX3R5cGUiOjIsImNvbXBhbnlfaWQiOjUzMiwiZGVzaWduYXRpb24iOm51bGwsImRlcGFydG1lbnQiOm51bGx9.mFy5HjGS_-Tbvmi4LIoLrbnm8dDuRAIAXp8IhyU0xoc\",\r\n    \"message\": \"Successfully logged in.\",\r\n    \"status\": \"success\"\r\n}\r\nActual Result: \r\n{\r\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDYyNzI5MzIsImlhdCI6MTYwNjI2OTMzMiwic3ViIjo3ODYsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJTdWpveSBCYXJ1YSIsImVtYWlsIjoidG9ubW95bnlAeWFob28uY29tIiwibWVtYmVyX3R5cGUiOjIsImNvbXBhbnlfaWQiOjUzMiwiZGVzaWduYXRpb24iOm51bGwsImRlcGFydG1lbnQiOm51bGx9.mFy5HjGS_-Tbvmi4LIoLrbnm8dDuRAIAXp8IhyU0xoc\",\r\n    \"message\": \"Successfully logged in.\",\r\n    \"status\": \"success\"\r\n}\r\n\r\nStatus Code 200\r\nTest Result is Passed"
+			},
+			"response": []
+		},
+		{
+			"name": "TFS_20_Company_admin_able_to_assign_task_to_the_app_users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f3a2fb4f-edd9-4dc0-bf92-9dd376c929cc",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\":\"Delivery\",\r\n\"is_paid\": true,\r\n\"assigned_time\": \"timestamp\",\r\n\"assigned_location_lattitude\": \"24.43\",\r\n\"assigned_location_longitude\": \"93.42\",\r\n\"assigned_address\": \"Chittagong 1212\",\r\n\"admin_id\": 786,\r\n\"user_id\": 496\r\n}"
+				},
+				"url": {
+					"raw": "{{URL}}/api/v1/field-force/task/assign-task",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"field-force",
+						"task",
+						"assign-task"
+					]
+				},
+				"description": "Objective: Company admin login in admin panel\r\n\r\nSE: Shiblu Ahmad\r\nPO: Pranto Majumder\r\nQA: Sujoy Barua\r\nReviewd By: Duha Chowdhury\r\n\r\nTest data :\r\n{\r\n\"title\":\"Delivery\",\r\n\"is_paid\": true,\r\n\"assigned_time\": \"timestamp\",\r\n\"assigned_location_lattitude\": \"24.43\",\r\n\"assigned_location_longitude\": \"93.42\",\r\n\"assigned_address\": \"Chittagong 1212\",\r\n\"admin_id\": 786,\r\n\"user_id\": 496\r\n}\r\n\r\nExpected result : \r\n\r\nActual Result: \r\n{\r\n    \"message\": \"Task assign successful\",\r\n    \"status\": \"success\"\r\n}\r\n\r\nStatus Code 201\r\nTest Result is Passed"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "86f9fc03-d754-4fb2-a2e9-53a3e97086d9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1bad4922-89b0-4d02-b208-66e68495d1e9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
